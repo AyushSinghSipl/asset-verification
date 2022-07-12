@@ -99,7 +99,7 @@ class AssetDetailsFragment() : Fragment() {
             if (it.assetQRId != null) {
                 var result = it
                 asseData = result
-                binding.textViewAssetQrId.text = result.assetQRId.toString()
+           //     binding.textViewAssetQrId.text = result.assetQRId.toString()
                 binding.textViewPlantCode.text = result.plantCode.toString()
                 binding.textViewPlantName.text = result.plantName.toString()
                 binding.textViewClassName.text = result.className.toString()
@@ -108,7 +108,7 @@ class AssetDetailsFragment() : Fragment() {
                 binding.textViewAssetCode.text = result.assetCode.toString()
                 binding.textViewCapDate.text = result.capDt.toString()
                 binding.textViewAssetDesc.text = result.assetDescription.toString()
-                binding.textViewEndDate.text = result.endDt.toString()
+              //  binding.textViewEndDate.text = result.endDt.toString()
 
                 val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
                 val checkUserValidParam = CheckUserValidParam(emp_id, 0, 1)
