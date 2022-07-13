@@ -155,9 +155,10 @@ registerObserver()
             binding.ReasonCard.visibility = View.VISIBLE
         }
         menuList.add(NotInUseReasonModel("HIGH REPAIRING COST",1))
-        menuList.add(NotInUseReasonModel("NOT REPAIRABLE",2))
-        menuList.add(NotInUseReasonModel("DAMAGED PRODUCTS",3))
-        menuList.add(NotInUseReasonModel("NPA",4))
+        menuList.add(NotInUseReasonModel("NOT REPAIRABLE CONDITION",2))
+        menuList.add(NotInUseReasonModel("DAMAGED ",3))
+//        menuList.add(NotInUseReasonModel("NPA",4))
+        menuList.add(NotInUseReasonModel("TECHNOLOGY ABSOLUTE",4))
 
         notInUseReasonAdapter = NotInUseReasonAdapter(menuList,this)
         binding.recyclerViewReason.adapter = notInUseReasonAdapter

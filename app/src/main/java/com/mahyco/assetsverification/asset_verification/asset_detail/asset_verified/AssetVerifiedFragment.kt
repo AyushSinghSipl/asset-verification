@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.gson.Gson
 import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.SaveStatusResponse
 import com.mahyco.assetsverification.databinding.FragmentAssetVerifiedBinding
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -65,16 +66,25 @@ binding.textViewTime.text = currentDate
             assetDetail,
             SaveStatusResponse::class.java
         )
-        binding.textViewAssetQrId.text = assetData.assetQRId.toString()
+//        binding.textViewAssetQrId.text = assetData.assetQRId.toString()
         binding.textViewPlantCode.text = assetData.plantCode.toString()
         binding.textViewPlantName.text = assetData.plantName.toString()
         binding.textViewClassName.text = assetData.className.toString()
         binding.textViewClassCode.text = assetData.classCode.toString()
         binding.textViewQrCode.text = assetData.qRCode.toString()
         binding.textViewAssetCode.text = assetData.assetCode.toString()
-        binding.textViewCapDate.text = assetData.capDt.toString()
+    //    binding.textViewCapDate.text = assetData.capDt.toString()
         binding.textViewAssetDesc.text = assetData.assetDescription.toString()
         binding.textViewStatus.text = assetData.status.toString()
+
+        val completionDate1 = assetData.capDt.toString()
+        val df: DateFormat = SimpleDateFormat("YYYY-MM-DDTHH:mm:ss")
+        var date = Date()
+        date = df.parse(completionDate1)
+        val df1: DateFormat = SimpleDateFormat("dd/MM/yyyy")
+        //   System.out.println(df1.format(date))
+
+        binding.textViewCapDate.text = date.toString()
 
     }
 

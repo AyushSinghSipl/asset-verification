@@ -24,6 +24,7 @@ import com.mahyco.assetsverification.core.SharedPreference
 import com.mahyco.assetsverification.databinding.FragmentAssetDetailsBinding
 import com.mahyco.assetsverification.login.LoginActivity
 import com.mahyco.cmr_app.core.Constant
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -106,9 +107,18 @@ class AssetDetailsFragment() : Fragment() {
                 binding.textViewClassCode.text = result.classCode.toString()
                 binding.textViewQrCode.text = result.qRCode.toString()
                 binding.textViewAssetCode.text = result.assetCode.toString()
-                binding.textViewCapDate.text = result.capDt.toString()
+//                binding.textViewCapDate.text = result.capDt.toString()
                 binding.textViewAssetDesc.text = result.assetDescription.toString()
               //  binding.textViewEndDate.text = result.endDt.toString()
+
+                val completionDate1 = result.capDt.toString()
+                val df: DateFormat = SimpleDateFormat("YYYY-MM-DDTHH:mm:ss")
+                var date = Date()
+                date = df.parse(completionDate1)
+                val df1: DateFormat = SimpleDateFormat("dd/MM/yyyy")
+             //   System.out.println(df1.format(date))
+
+                binding.textViewCapDate.text = date.toString()
 
                 val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
                 val checkUserValidParam = CheckUserValidParam(emp_id, 0, 1)
