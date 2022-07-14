@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.mahyco.assetsverification.HomeActivity
 import com.mahyco.assetsverification.R
-import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.adapter.NotInUseReasonAdapter
-import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.adapter.NotInUseReasonModel
-import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.adapter.onCLick
+import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.adapter.*
 import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.SaveAssetStatusParam
 import com.mahyco.assetsverification.asset_verification.asset_detail.asset_verified.AssetVerifiedFragment
 import com.mahyco.assetsverification.asset_verification.asset_detail.viewmodel.HomeViewModel
@@ -23,12 +21,13 @@ import com.mahyco.assetsverification.databinding.FragmentAssetStatusBinding
 import com.mahyco.cmr_app.core.Constant
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class AssetStatusFragment : Fragment(), onCLick {
+class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
     // TODO: Rename and change types of parameters
     private var assetQRId: String? = null
     private var param2: String? = null
@@ -37,9 +36,11 @@ class AssetStatusFragment : Fragment(), onCLick {
     var menuList = ArrayList<NotInUseReasonModel>()
     var npaList = ArrayList<NotInUseReasonModel>()
     lateinit var notInUseReasonAdapter : NotInUseReasonAdapter
+    lateinit var npaAdapter: NpaAdapter
     private val viewModel: HomeViewModel by viewModels()
     lateinit var status: String
     lateinit var reason: String
+    lateinit var npa: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,17 +156,23 @@ registerObserver()
         binding.chooseReason.setOnClickListener {
             binding.ReasonCard.visibility = View.VISIBLE
         }
-        menuList.add(NotInUseReasonModel("HIGH REPAIRING COST",1))
-        menuList.add(NotInUseReasonModel("NOT REPAIRABLE CONDITION",2))
-        menuList.add(NotInUseReasonModel("DAMAGED ",3))
-//        menuList.add(NotInUseReasonModel("NPA",4))
-        menuList.add(NotInUseReasonModel("TECHNOLOGY ABSOLUTE",4))
+
+        binding.chooseNPA.setOnClickListener {
+            binding.npaCard.visibility = View.VISIBLE
+        }
+
+
         npaList.add(NotInUseReasonModel("DECLARED NPA",1))
         npaList.add(NotInUseReasonModel("NO NPA",2))
 
         notInUseReasonAdapter = NotInUseReasonAdapter(menuList,this)
         binding.recyclerViewReason.adapter = notInUseReasonAdapter
         binding.recyclerViewReason.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+
+        npaAdapter = NpaAdapter(npaList,this)
+        binding.recyclerViewNpa.adapter = npaAdapter
+        binding.recyclerViewNpa.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
 
     }
@@ -191,5 +198,25 @@ registerObserver()
         binding.reasonSelection.text = menuList.get(position).name
         reason = menuList.get(position).name
         binding.buttonVerify.visibility = View.VISIBLE
+    }
+
+    override fun onNpaSelect(position: Int) {
+        npa = npaList.get(position).name
+        binding.npaCard.visibility = View.GONE
+        binding.textViewSelectedNpa.text = npa
+        binding.textViewSelectedNpa.visibility= View.VISIBLE
+        binding.chooseReason.visibility= View.VISIBLE
+        if (npa.equals("DECLARED NPA")){
+            menuList = ArrayList()
+        menuList.add(NotInUseReasonModel("HIGH REPAIRING COST",1))
+        menuList.add(NotInUseReasonModel("NOT REPAIRABLE CONDITION",2))
+        menuList.add(NotInUseReasonModel("DAMAGED ",3))
+//        menuList.add(NotInUseReasonModel("NPA",4))
+        menuList.add(NotInUseReasonModel("TECHNOLOGY ABSOLUTE",4))
+        }else{
+            menuList = ArrayList()
+            menuList.add(NotInUseReasonModel("SEASONABLE USE",1))
+            menuList.add(NotInUseReasonModel("UNDER REPAIRING",2))
+        }
     }
 }

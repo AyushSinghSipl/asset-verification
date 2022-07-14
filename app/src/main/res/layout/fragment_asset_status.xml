@@ -191,11 +191,13 @@
                 android:id="@+id/textViewSelectedNpa"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_16"
+                android:visibility="gone"
                 android:textStyle="bold" />
 
             <RelativeLayout
                 android:id="@+id/choose_reason"
                 android:layout_width="250dp"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="@dimen/dp_5"
