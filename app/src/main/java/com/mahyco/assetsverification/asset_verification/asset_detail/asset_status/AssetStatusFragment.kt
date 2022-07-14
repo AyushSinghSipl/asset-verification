@@ -35,6 +35,7 @@ class AssetStatusFragment : Fragment(), onCLick {
     private lateinit var binding: FragmentAssetStatusBinding
     var activity = getActivity() as HomeActivity?
     var menuList = ArrayList<NotInUseReasonModel>()
+    var npaList = ArrayList<NotInUseReasonModel>()
     lateinit var notInUseReasonAdapter : NotInUseReasonAdapter
     private val viewModel: HomeViewModel by viewModels()
     lateinit var status: String
@@ -159,6 +160,8 @@ registerObserver()
         menuList.add(NotInUseReasonModel("DAMAGED ",3))
 //        menuList.add(NotInUseReasonModel("NPA",4))
         menuList.add(NotInUseReasonModel("TECHNOLOGY ABSOLUTE",4))
+        npaList.add(NotInUseReasonModel("DECLARED NPA",1))
+        npaList.add(NotInUseReasonModel("NO NPA",2))
 
         notInUseReasonAdapter = NotInUseReasonAdapter(menuList,this)
         binding.recyclerViewReason.adapter = notInUseReasonAdapter
