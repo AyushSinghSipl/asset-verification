@@ -40,7 +40,7 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
     private val viewModel: HomeViewModel by viewModels()
     lateinit var status: String
     lateinit var reason: String
-    lateinit var npa: String
+     var npa: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,7 +124,8 @@ registerObserver()
                     "IN USE",
                     emp_id,
                     assetQRId?.toInt(),
-                   ""
+                   "",
+                    npa
                 )
 
                 viewModel.saveAssetStatus(saveAssetStatusParam)
@@ -152,9 +153,29 @@ registerObserver()
             binding.typeSelection.text = "NOT IN USE"
             binding.buttonVerify.visibility = View.GONE
             binding.layoutNotInUse.visibility = View.VISIBLE
+            binding.reasonSelection.text = "CHOOSE REASON"
         }
         binding.chooseReason.setOnClickListener {
             binding.ReasonCard.visibility = View.VISIBLE
+            binding.layoutNotInUse.visibility = View.VISIBLE
+            if (npa.equals("DECLARED NPA")){
+                menuList = ArrayList()
+                menuList.add(NotInUseReasonModel("HIGH REPAIRING COST",1))
+                menuList.add(NotInUseReasonModel("NOT REPAIRABLE CONDITION",2))
+                menuList.add(NotInUseReasonModel("DAMAGED ",3))
+//        menuList.add(NotInUseReasonModel("NPA",4))
+                menuList.add(NotInUseReasonModel("TECHNOLOGY ABSOLUTE",4))
+            }else{
+                menuList = ArrayList()
+                menuList.add(NotInUseReasonModel("SEASONABLE USE",1))
+                menuList.add(NotInUseReasonModel("UNDER REPAIRING",2))
+            }
+
+            notInUseReasonAdapter = NotInUseReasonAdapter(menuList,this)
+            binding.recyclerViewReason.adapter = notInUseReasonAdapter
+            binding.recyclerViewReason.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+
         }
 
         binding.chooseNPA.setOnClickListener {
@@ -164,10 +185,6 @@ registerObserver()
 
         npaList.add(NotInUseReasonModel("DECLARED NPA",1))
         npaList.add(NotInUseReasonModel("NO NPA",2))
-
-        notInUseReasonAdapter = NotInUseReasonAdapter(menuList,this)
-        binding.recyclerViewReason.adapter = notInUseReasonAdapter
-        binding.recyclerViewReason.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
 
         npaAdapter = NpaAdapter(npaList,this)
@@ -201,11 +218,14 @@ registerObserver()
     }
 
     override fun onNpaSelect(position: Int) {
+        binding.buttonVerify.visibility = View.GONE
         npa = npaList.get(position).name
         binding.npaCard.visibility = View.GONE
         binding.textViewSelectedNpa.text = npa
+        binding.npaSelection.text = npa
         binding.textViewSelectedNpa.visibility= View.VISIBLE
         binding.chooseReason.visibility= View.VISIBLE
+        binding.reasonSelection.text = "CHOOSE REASON"
         if (npa.equals("DECLARED NPA")){
             menuList = ArrayList()
         menuList.add(NotInUseReasonModel("HIGH REPAIRING COST",1))

@@ -112,13 +112,13 @@ class AssetDetailsFragment() : Fragment() {
               //  binding.textViewEndDate.text = result.endDt.toString()
 
                 val completionDate1 = result.capDt.toString()
-                val df: DateFormat = SimpleDateFormat("YYYY-MM-DDTHH:mm:ss")
+                val df: DateFormat = SimpleDateFormat("YYYY-MM-DD'T'HH:mm:ss")
                 var date = Date()
                 date = df.parse(completionDate1)
                 val df1: DateFormat = SimpleDateFormat("dd/MM/yyyy")
              //   System.out.println(df1.format(date))
 
-                binding.textViewCapDate.text = date.toString()
+                binding.textViewCapDate.text = df1.format(date).toString()
 
                 val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
                 val checkUserValidParam = CheckUserValidParam(emp_id, 0, 1)

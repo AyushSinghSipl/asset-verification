@@ -78,13 +78,13 @@ binding.textViewTime.text = currentDate
         binding.textViewStatus.text = assetData.status.toString()
 
         val completionDate1 = assetData.capDt.toString()
-        val df: DateFormat = SimpleDateFormat("YYYY-MM-DDTHH:mm:ss")
+        val df: DateFormat = SimpleDateFormat("YYYY-MM-DD'T'HH:mm:ss")
         var date = Date()
         date = df.parse(completionDate1)
         val df1: DateFormat = SimpleDateFormat("dd/MM/yyyy")
         //   System.out.println(df1.format(date))
 
-        binding.textViewCapDate.text = date.toString()
+        binding.textViewCapDate.text = df1.format(date).toString()
 
     }
 

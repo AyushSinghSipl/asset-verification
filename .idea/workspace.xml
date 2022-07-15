@@ -9,7 +9,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="I/CMR RetrofitApiClient" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="I/CMR " />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
@@ -19,16 +19,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b0f27e4-cc12-49d0-8a56-d6855576649a" name="Default Changelist" comment="asset verification modification 12 july">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/adapter/NpaAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/workspace-id.txt.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/workspace-id.txt.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/AssetDetailsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/AssetDetailsFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/model/SaveAssetStatusParam.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/model/SaveAssetStatusParam.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_verified/AssetVerifiedFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_verified/AssetVerifiedFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_asset_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_asset_status.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +40,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\r\.android\avd\galaxy_12.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[192.168.29.142:5555]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -101,7 +105,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DEBUGGABLE_DEVICE" value="samsung-sm_a505f-adb-RZ8M50RB21W-Ttmfgm._adb-tls-connect._tcp" />
+    <property name="DEBUGGABLE_DEVICE" value="vivo-vivo_1724-192.168.29.142:5555" />
     <property name="DEBUGGABLE_PROCESS" value="com.mahyco.assetsverification" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="ResourceManagerPrefKey.ResourceType" value="DRAWABLE" />
@@ -533,16 +537,6 @@
           <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>58</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>60</line>
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/login/LoginActivity.kt</url>
           <line>127</line>
           <option name="timeStamp" value="89" />
@@ -626,6 +620,11 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/AssetDetailsFragment.kt</url>
           <line>99</line>
           <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
+          <line>158</line>
+          <option name="timeStamp" value="112" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

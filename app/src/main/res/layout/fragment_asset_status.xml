@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
@@ -263,6 +263,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal|bottom"
             android:layout_marginTop="20dp"
+            android:visibility="gone"
             android:layout_marginBottom="@dimen/dp_30"
             android:background="@color/colorPrimary"
             android:backgroundTint="@color/colorPrimary"

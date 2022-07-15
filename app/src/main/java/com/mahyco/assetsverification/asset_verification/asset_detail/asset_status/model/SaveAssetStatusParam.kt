@@ -14,5 +14,8 @@ data class SaveAssetStatusParam(
 	val assetQRId: Int? = null,
 
 	@field:SerializedName("Reason")
-	val reason: String? = null
+	val reason: String? = null,
+
+	@field:SerializedName("NPAType")
+	val npaType: String? = null
 )
