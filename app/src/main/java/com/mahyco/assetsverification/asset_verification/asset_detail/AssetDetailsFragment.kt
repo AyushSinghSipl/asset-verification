@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.mahyco.assetsverification.HomeActivity
 import com.mahyco.assetsverification.MainActivity
 import com.mahyco.assetsverification.R
 import com.mahyco.assetsverification.ThanksFragment
@@ -44,7 +45,7 @@ class AssetDetailsFragment() : Fragment() {
     private var filterValue: String? = null
     private var param2: String? = null
     private lateinit var binding: FragmentAssetDetailsBinding
-    var activity: MainActivity? = getActivity() as MainActivity?
+    var activity: HomeActivity? = getActivity() as HomeActivity?
     var msclass: Messageclass? = null
     private val viewModel: HomeViewModel by viewModels()
     lateinit var sharedPreference: SharedPreference

@@ -158,7 +158,7 @@ registerObserver()
         binding.chooseReason.setOnClickListener {
             binding.ReasonCard.visibility = View.VISIBLE
             binding.layoutNotInUse.visibility = View.VISIBLE
-            if (npa.equals("DECLARED NPA")){
+            if (npa.equals("NPA")){
                 menuList = ArrayList()
                 menuList.add(NotInUseReasonModel("HIGH REPAIRING COST",1))
                 menuList.add(NotInUseReasonModel("NOT REPAIRABLE CONDITION",2))
@@ -183,8 +183,8 @@ registerObserver()
         }
 
 
-        npaList.add(NotInUseReasonModel("DECLARED NPA",1))
-        npaList.add(NotInUseReasonModel("NO NPA",2))
+        npaList.add(NotInUseReasonModel("NPA",1))
+        npaList.add(NotInUseReasonModel("NOT NPA",2))
 
 
         npaAdapter = NpaAdapter(npaList,this)
@@ -226,7 +226,7 @@ registerObserver()
         binding.textViewSelectedNpa.visibility= View.VISIBLE
         binding.chooseReason.visibility= View.VISIBLE
         binding.reasonSelection.text = "CHOOSE REASON"
-        if (npa.equals("DECLARED NPA")){
+        if (npa.equals("NPA")){
             menuList = ArrayList()
         menuList.add(NotInUseReasonModel("HIGH REPAIRING COST",1))
         menuList.add(NotInUseReasonModel("NOT REPAIRABLE CONDITION",2))

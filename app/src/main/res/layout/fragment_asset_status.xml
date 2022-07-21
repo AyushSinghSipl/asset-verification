@@ -123,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
                 android:gravity="center_horizontal"
-                android:text="SELECT NPA?"
+                android:text="NPA STATUS"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="bold" />

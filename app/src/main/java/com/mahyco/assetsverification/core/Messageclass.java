@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 import com.mahyco.assetsverification.HomeActivity;
-import com.mahyco.assetsverification.MainActivity;
 import com.mahyco.assetsverification.R;
 import com.mahyco.assetsverification.login.LoginActivity;
 
