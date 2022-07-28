@@ -35,16 +35,16 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view: View = binding.root
         setContentView(view)
         msclass = Messageclass(this)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getDeviceIMEI()
-        }
+
+           // getDeviceIMEI()
+
         setUi()
         registerObserver()
     }
@@ -89,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
         EncryptDecryptManager.saveUserCodeWithEncryption(empCode, context)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     private fun validateData(): Boolean {
 
         if (binding.edtEmpCode.text.toString() == "") {
@@ -107,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
         }*/
         return true
     }
-    @RequiresApi(Build.VERSION_CODES.O)
+
     private fun setUi() {
 
         binding.btnLogin.setOnClickListener {
@@ -148,9 +148,9 @@ viewModel.callLoginApi(loginParam)
         }
         var IMEINumber = ""
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
                 IMEINumber = telephonyManager.imei
-            }
+
             device_Unique_id = IMEINumber
         } catch (e: Exception) {
             val uniquePseudoID =

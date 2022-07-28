@@ -40,12 +40,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+       <!-- <activity
             android:name=".asset_verification.asset_detail.AssetDetailActivity"
             android:exported="false" />
         <activity
             android:name=".asset_verification.ScannAssetsActivity"
-            android:exported="false" />
+            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true"></activity>

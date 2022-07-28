@@ -13,10 +13,9 @@ import java.util.logging.Logger
 
 object RetrofitApiClient {
 
-    private val logger: Logger = Logger.getLogger("CMR RetrofitApiClient") //Logger.getLogger(RetrofitApiClient::class.java.simpleName)
-//    private const val BASE_URL = "https://cmrapi.mahyco.com/"
-    private const val BASE_URL = "http://10.80.50.153/AssetsTracking/api/"
-//    private const val BASE_URL = "https://cmrapinxg.mahyco.com/"
+    private val logger: Logger = Logger.getLogger("Asset RetrofitApiClient") //Logger.getLogger(RetrofitApiClient::class.java.simpleName)
+//    private const val BASE_URL = "http://10.80.50.153/AssetsTracking/api/"
+    private const val BASE_URL = "https://assettrack.mahyco.com/api/"
 
     private var apiClient: Retrofit? = null
 

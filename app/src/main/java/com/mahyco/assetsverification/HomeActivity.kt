@@ -3,7 +3,9 @@ package com.mahyco.assetsverification
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.View
 import android.widget.TextView
@@ -37,6 +39,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var codeScanner: CodeScanner
     private val MY_CAMERA_REQUEST_CODE = 100
     var msclass: Messageclass? = null
+    var alert: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -305,10 +308,34 @@ class HomeActivity : AppCompatActivity() {
                 binding.appBarHome.contentHome.scannerView.setOnClickListener {
                     codeScanner.startPreview()
                 }
+            }else{
+                if (alert !=null){
+                    if (alert!!.isShowing) {
+                        alert!!.dismiss()
+                    }
+                }
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage("You need to allow Camera permission to perform further operations")
+                    .setCancelable(false)
+                    .setPositiveButton(
+                        "Allow"
+                    ) { dialog, id ->
+                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        val uri: Uri =
+                            Uri.fromParts("package", getPackageName(), null)
+                        intent.data = uri
+                        startActivity(intent)
+                        dialog.dismiss()
+                    }
+                    .setNegativeButton(
+                        "Deny"
+                    ) { dialog, id -> }
+                alert = builder.create()
+                alert?.show()
+
+                binding.appBarHome.contentHome.scannerView.visibility = View.GONE
+                binding.appBarHome.contentHome.btnAstVerification.visibility = View.VISIBLE
             }
-        } else {
-//                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show()
-            msclass?.showMessage("camera permission denied")
         }
     }
 
@@ -316,10 +343,10 @@ class HomeActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 200) {
             var result = IntentIntegrator.parseActivityResult(resultCode, data)
-            if (result != null) {
+           /* if (result != null) {
                 Toast.makeText(this, "scan complete ", Toast.LENGTH_SHORT).show()
-                /* val intent: Intent = Intent(this, ScannAssetsActivity::class.java)
-                 startActivity(intent)*/
+                *//* val intent: Intent = Intent(this, ScannAssetsActivity::class.java)
+                 startActivity(intent)*//*
                 Constant.addFragmentToActivity(
                     AssetDetailsFragment(),
                     R.id.container,
@@ -328,7 +355,7 @@ class HomeActivity : AppCompatActivity() {
                 )
                 binding.appBarHome.contentHome.scannerView.visibility = View.GONE
                 binding.appBarHome.contentHome.btnAstVerification.visibility = View.VISIBLE
-            }
+            }*/
         }
     }
 }
