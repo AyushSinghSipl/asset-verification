@@ -25,6 +25,8 @@ data class ScanQRResult(
 	@field:SerializedName("AssetQRId")
 	val assetQRId: String? = null,
 
+
+
 	@field:SerializedName("PlantName")
 	val plantName: String? = null,
 

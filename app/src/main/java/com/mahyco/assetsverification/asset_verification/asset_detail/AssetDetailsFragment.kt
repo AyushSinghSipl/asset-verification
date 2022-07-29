@@ -128,7 +128,7 @@ class AssetDetailsFragment() : Fragment() {
             }else{
                 binding.buttonMismatchDetails.isEnabled = false
                 binding.buttonConfirm.isEnabled = false
-                msclass?.showMessage("Error occurred in scanning asset")
+                msclass?.showMessage(it.Comment)
             }
 
         })
