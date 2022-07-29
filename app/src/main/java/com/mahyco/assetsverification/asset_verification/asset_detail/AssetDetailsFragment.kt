@@ -14,11 +14,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mahyco.assetsverification.HomeActivity
-import com.mahyco.assetsverification.MainActivity
 import com.mahyco.assetsverification.R
 import com.mahyco.assetsverification.ThanksFragment
 import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.AssetStatusFragment
-import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.*
+import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.CheckUserValidParam
+import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.SaveAssetStatusParam
+import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.ScanQRParam
+import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.ScanQRResult
 import com.mahyco.assetsverification.asset_verification.asset_detail.viewmodel.HomeViewModel
 import com.mahyco.assetsverification.core.Messageclass
 import com.mahyco.assetsverification.core.SharedPreference
@@ -101,7 +103,7 @@ class AssetDetailsFragment() : Fragment() {
             if (it.assetQRId != null) {
                 var result = it
                 asseData = result
-           //     binding.textViewAssetQrId.text = result.assetQRId.toString()
+                //     binding.textViewAssetQrId.text = result.assetQRId.toString()
                 binding.textViewPlantCode.text = result.plantCode.toString()
                 binding.textViewPlantName.text = result.plantName.toString()
                 binding.textViewClassName.text = result.className.toString()
@@ -110,14 +112,14 @@ class AssetDetailsFragment() : Fragment() {
                 binding.textViewAssetCode.text = result.assetCode.toString()
 //                binding.textViewCapDate.text = result.capDt.toString()
                 binding.textViewAssetDesc.text = result.assetDescription.toString()
-              //  binding.textViewEndDate.text = result.endDt.toString()
+                //  binding.textViewEndDate.text = result.endDt.toString()
 
                 val completionDate1 = result.capDt.toString()
                 val df: DateFormat = SimpleDateFormat("YYYY-MM-DD'T'HH:mm:ss")
                 var date = Date()
                 date = df.parse(completionDate1)
                 val df1: DateFormat = SimpleDateFormat("dd/MM/yyyy")
-             //   System.out.println(df1.format(date))
+                //   System.out.println(df1.format(date))
 
                 binding.textViewCapDate.text = df1.format(date).toString()
 
@@ -125,7 +127,7 @@ class AssetDetailsFragment() : Fragment() {
                 val checkUserValidParam = CheckUserValidParam(emp_id, 0, 1)
 
                 viewModel.checkUserValidData(checkUserValidParam)
-            }else{
+            } else {
                 binding.buttonMismatchDetails.isEnabled = false
                 binding.buttonConfirm.isEnabled = false
                 msclass?.showMessage(it.Comment)
@@ -147,11 +149,11 @@ class AssetDetailsFragment() : Fragment() {
                 alertDialog.setMessage(result.comment)
 
                 alertDialog.setButton("OK") { dialog, which ->
-                        val intent = Intent(context, LoginActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        startActivity(intent)
+                    val intent = Intent(context, LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
                     activity?.finish()
-                        alertDialog.dismiss()
+                    alertDialog.dismiss()
                 }
 
                 alertDialog.show()

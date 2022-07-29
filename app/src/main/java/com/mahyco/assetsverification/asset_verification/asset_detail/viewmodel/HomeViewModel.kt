@@ -2,20 +2,14 @@ package com.mahyco.assetsverification.asset_verification.asset_detail.viewmodel
 
 import android.app.Application
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.mahyco.assetsverification.R
 import com.mahyco.assetsverification.api.IDataServiceCMR
 import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.*
 import com.mahyco.assetsverification.core.SharedPreference
-import com.mahyco.assetsverification.login.model.LoginParam
-import com.mahyco.assetsverification.login.model.LoginResponseModel
-import com.mahyco.cmr_app.core.Constant
 import com.mahyco.cmr_app.repositories.ImplCMRDataRepo
 import com.mahyco.isp.repositories.RetrofitApiClient
 import com.mahyco.isp.viewmodel.BaseViewModel
-import com.mahyco.rcbucounterboys2020.utils.EncryptDecryptManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -26,6 +20,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(application: Application) : BaseViewModel(application) {
     private var mContext: Context = application
     private var iServiceISP: IDataServiceCMR
+
     init {
         var apiClient = RetrofitApiClient.getAPIClient()
         iServiceISP = apiClient.create(IDataServiceCMR::class.java)
@@ -37,11 +32,12 @@ class HomeViewModel @Inject constructor(application: Application) : BaseViewMode
 
     fun getAssetDetailsApi(
         scanQRParam: ScanQRParam
-    ){
+    ) {
         val sharedPreference: SharedPreference = SharedPreference(mContext)
         loadingLiveData.value = true
         val disposable = CompositeDisposable()
-        val observable = ImplCMRDataRepo(iServiceISP).getAssetDetail(scanQRParam
+        val observable = ImplCMRDataRepo(iServiceISP).getAssetDetail(
+            scanQRParam
         )
         val dispose = observable
             .subscribeOn(Schedulers.io())
@@ -50,8 +46,7 @@ class HomeViewModel @Inject constructor(application: Application) : BaseViewMode
                 loadingLiveData.value = false
 
                 if (response != null /*&& response.message!=null*/) {
-                        QRdata.value = response
-
+                    QRdata.value = response
                 } else {
                     errorLiveData.value = mContext.resources.getString(R.string.server_error)
                 }
@@ -62,10 +57,11 @@ class HomeViewModel @Inject constructor(application: Application) : BaseViewMode
 
     fun saveAssetStatus(
         saveAssetStatusParam: SaveAssetStatusParam
-    ){
+    ) {
         loadingLiveData.value = true
         val disposable = CompositeDisposable()
-        val observable = ImplCMRDataRepo(iServiceISP).SaveAssetStatus(saveAssetStatusParam
+        val observable = ImplCMRDataRepo(iServiceISP).SaveAssetStatus(
+            saveAssetStatusParam
         )
         val dispose = observable
             .subscribeOn(Schedulers.io())
@@ -85,17 +81,18 @@ class HomeViewModel @Inject constructor(application: Application) : BaseViewMode
 
     fun checkUserValidData(
         checkUserValidParam: CheckUserValidParam
-    ){
+    ) {
         loadingLiveData.value = true
         val disposable = CompositeDisposable()
-        val observable = ImplCMRDataRepo(iServiceISP).checkUserValid(checkUserValidParam
+        val observable = ImplCMRDataRepo(iServiceISP).checkUserValid(
+            checkUserValidParam
         )
         val dispose = observable
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { response ->
                 loadingLiveData.value = false
-                if (response != null ) {
+                if (response != null) {
 //                    if (response.getVehicleTypeResponse != null) {
                     checkUserValidData.value = response
 //                }
