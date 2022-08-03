@@ -75,6 +75,7 @@ class LoginActivity : AppCompatActivity() {
                 val userNameEncrypted =
                     "" + EncryptDecryptManager.encryptStringData(result?.empName)
                 sharedPreference.save(Constant.USER_NAME, userNameEncrypted)
+                sharedPreference.save(Constant.ROLE_ID, result?.roleId.toString())
                 sharedPreference.save(Constant.EMP_ID, binding.edtEmpCode.text.toString())
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)

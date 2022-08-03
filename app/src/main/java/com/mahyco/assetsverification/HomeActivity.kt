@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.TextView
@@ -66,8 +67,13 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setUi() {
+        msclass = Messageclass(this)
         binding.appBarHome.contentHome.btnAstVerification.setOnClickListener {
-            scanQr()
+            if (Constant.isNetworkConnected(this)) {
+                scanQr()
+            }else{
+                msclass?.showMessage("Please check your internet connection")
+            }
         }
         binding.appBarHome.imgMenu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START, true)
@@ -176,7 +182,7 @@ class HomeActivity : AppCompatActivity() {
         binding.appBarHome.contentHome.scannerView.visibility = View.VISIBLE
         binding.appBarHome.contentHome.btnAstVerification.visibility = View.GONE
 
-        msclass = Messageclass(this)
+
 
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -201,18 +207,24 @@ class HomeActivity : AppCompatActivity() {
 
             // Callbacks
             codeScanner.decodeCallback = DecodeCallback {
-                runOnUiThread {
+                if (Constant.isNetworkConnected(this)) {
+                    runOnUiThread {
 //                    Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
 //                    startActivity(Intent(this, AssetDetailActivity::class.java))
-                    Constant.addFragmentToActivity(
-                        AssetDetailsFragment.newInstance(it.text),
-                        R.id.container,
-                        supportFragmentManager,
-                        AssetDetailsFragment.TAG
-                    )
+                        Constant.addFragmentToActivity(
+                            AssetDetailsFragment.newInstance(it.text),
+                            R.id.container,
+                            supportFragmentManager,
+                            AssetDetailsFragment.TAG
+                        )
 
+                        binding.appBarHome.contentHome.scannerView.visibility = View.GONE
+                        binding.appBarHome.contentHome.btnAstVerification.visibility = View.VISIBLE
+                    }
+                }else{
                     binding.appBarHome.contentHome.scannerView.visibility = View.GONE
                     binding.appBarHome.contentHome.btnAstVerification.visibility = View.VISIBLE
+                    msclass?.showMessage("Please check your internet connection")
                 }
             }
             codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
@@ -273,6 +285,9 @@ class HomeActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == MY_CAMERA_REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+               if (Constant.isNetworkConnected(this)){
+
+
                 codeScanner.camera =
                     CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
                 codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
@@ -284,15 +299,30 @@ class HomeActivity : AppCompatActivity() {
 
                 // Callbacks
                 codeScanner.decodeCallback = DecodeCallback {
-                    runOnUiThread {
-                        Constant.addFragmentToActivity(
-                            AssetDetailsFragment.newInstance(it.text),
-                            R.id.container,
-                            supportFragmentManager,
-                            AssetDetailsFragment.TAG
-                        )
+                    if (Constant.isNetworkConnected(this)) {
+
+                        runOnUiThread {
+                            Constant.addFragmentToActivity(
+                                AssetDetailsFragment.newInstance(it.text),
+                                R.id.container,
+                                supportFragmentManager,
+                                AssetDetailsFragment.TAG
+                            )
+                            binding.appBarHome.contentHome.scannerView.visibility = View.GONE
+                            binding.appBarHome.contentHome.btnAstVerification.visibility =
+                                View.VISIBLE
+                        }
+                    }else{
+                        try {
                         binding.appBarHome.contentHome.scannerView.visibility = View.GONE
                         binding.appBarHome.contentHome.btnAstVerification.visibility = View.VISIBLE
+                        msclass?.showMessage("Please check your internet connection")
+                        }catch (e:Exception){
+                            Log.e("Homeactivity", "onRequestPermissionsResult: "+e.message )
+//                            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                            binding.appBarHome.contentHome.scannerView.visibility = View.GONE
+                            binding.appBarHome.contentHome.btnAstVerification.visibility = View.VISIBLE
+                        }
                     }
                 }
                 codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
@@ -308,6 +338,10 @@ class HomeActivity : AppCompatActivity() {
                 binding.appBarHome.contentHome.scannerView.setOnClickListener {
                     codeScanner.startPreview()
                 }
+               } else{
+                   msclass?.showMessage("Please check your internet connection")
+               }
+
             }else{
                 if (alert !=null){
                     if (alert!!.isShowing) {

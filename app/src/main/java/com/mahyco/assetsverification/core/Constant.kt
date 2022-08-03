@@ -1,9 +1,12 @@
 package com.mahyco.cmr_app.core
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.mahyco.assetsverification.R
@@ -18,6 +21,7 @@ class Constant {
         const val FINAL_MESSAGE = "finalmessage"
         const val USER_NAME = "user_name"
         const val EMP_ID = "emp_id"
+        const val ROLE_ID = "role_id"
 
         const val HOME = "HOME"
         const val CANCEL_SCAN = "CANCEL SCAN"
@@ -69,6 +73,15 @@ class Constant {
                 Settings.System.getInt(c.contentResolver, Settings.System.AUTO_TIME, 0) == 1
             }
         }
+
+
+        @SuppressLint("ServiceCast")
+        fun isNetworkConnected(c: Context): Boolean {
+            val cm: ConnectivityManager =
+                c?.getSystemService(AppCompatActivity.CONNECTIVITY_SERVICE) as ConnectivityManager
+            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo()!!.isConnected()
+        }
+
         public fun addFragmentToActivity(
             fragment: Fragment?,
             container: Int,

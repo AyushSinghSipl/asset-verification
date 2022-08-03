@@ -112,6 +112,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.38.1")
 
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    implementation 'com.github.jrvansuita:PickImage:v3.0.0'
 }
 
 kapt {

@@ -113,6 +113,7 @@
     <string name="confirm_details">Confirm Details</string>
     <string name="mismatch_details">Mismatch Details</string>
     <string name="verify">Verify</string>
+    <string name="upload_photo">Upload photo</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

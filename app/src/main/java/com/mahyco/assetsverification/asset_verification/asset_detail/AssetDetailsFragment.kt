@@ -124,7 +124,8 @@ class AssetDetailsFragment() : Fragment() {
                 binding.textViewCapDate.text = df1.format(date).toString()
 
                 val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
-                val checkUserValidParam = CheckUserValidParam(emp_id, 0, 1)
+                val roleId = sharedPreference.getValueString(Constant.ROLE_ID)
+                val checkUserValidParam = CheckUserValidParam(emp_id, roleId?.toInt(), 1)
 
                 viewModel.checkUserValidData(checkUserValidParam)
             } else {
@@ -149,10 +150,7 @@ class AssetDetailsFragment() : Fragment() {
                 alertDialog.setMessage(result.comment)
 
                 alertDialog.setButton("OK") { dialog, which ->
-                    val intent = Intent(context, LoginActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(intent)
-                    activity?.finish()
+                   requireActivity().onBackPressed()
                     alertDialog.dismiss()
                 }
 
