@@ -4,12 +4,13 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
@@ -32,7 +33,6 @@ import com.mahyco.assetsverification.asset_verification.asset_detail.viewmodel.H
 import com.mahyco.assetsverification.core.SharedPreference
 import com.mahyco.assetsverification.databinding.FragmentAssetStatusBinding
 import com.mahyco.cmr_app.core.Constant
-import com.mahyco.rcbucounterboys2020.utils.EncryptDecryptManager
 import com.vansuita.pickimage.bean.PickResult
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
@@ -42,6 +42,8 @@ import com.vansuita.pickimage.listeners.IPickResult
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.nio.file.Files
+import java.nio.file.Paths
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -52,7 +54,7 @@ private const val ARG_PARAM2 = "param2"
 class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
     // TODO: Rename and change types of parameters
     private var assetQRId: String? = null
-    private var param2: String? = null
+    private var qrCode: String? = null
     private lateinit var binding: FragmentAssetStatusBinding
     var activity = getActivity() as HomeActivity?
     var menuList = ArrayList<NotInUseReasonModel>()
@@ -73,7 +75,7 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
         super.onCreate(savedInstanceState)
         arguments?.let {
             assetQRId = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            qrCode = it.getString(ARG_PARAM2)
         }
     }
 
@@ -109,13 +111,16 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
         viewModel.SaveAssetStatusData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             var result = it
 
-            if (result.status?.equals("Missmatch") != true) {
+            if (result.status?.equals(getString(R.string.missmatch)) != true) {
 
-                if(photoFile?.exists()!!){
-                    photoFile?.getCanonicalFile()?.delete();
-                    if(photoFile?.exists()!!){
-                       context?.deleteFile(photoFile?.getName());
+                if (photoFile != null) {
+                    if (photoFile?.exists()!!) {
+                        photoFile?.getCanonicalFile()?.delete();
+                        if (photoFile?.exists()!!) {
+                            context?.deleteFile(photoFile?.getName());
+                        }
                     }
+
                 }
 
                 val gson = Gson()
@@ -134,7 +139,7 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
 
     }
 
-    @SuppressLint("SimpleDateFormat", "SetTextI18n")
+    @SuppressLint("SimpleDateFormat", "SetTextI18n", "NewApi")
     private fun setUi() {
 
         val sd = SimpleDateFormat(
@@ -163,29 +168,47 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
         }
 
         binding.buttonVerify.setOnClickListener {
+            var fileName = ""
+            var fileByte = ""
+            if (photoFile != null) {
+                try {
+                    //   val encoded = Files.readAllBytes(Paths.get(photoFile?.absolutePath))
+                    val fileContent = Files.readAllBytes(photoFile!!.toPath())
 
+
+                    fileByte = Base64.getEncoder().encodeToString(fileContent)
+                    fileName = photoFile?.name.toString()
+                } catch (e: IOException) {
+                    Log.e(TAG, "setUi: " + e.message)
+                }
+            }
+            val sharedPreference = SharedPreference(requireContext())
+            val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
             if (status.equals("IN USE")) {
-                val sharedPreference = SharedPreference(requireContext())
-                val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
+
                 val saveAssetStatusParam = SaveAssetStatusParam(
                     "IN USE",
                     emp_id,
                     assetQRId?.toInt(),
                     "",
+                    fileName,
+                    fileByte,
                     npa
                 )
 
                 viewModel.saveAssetStatus(saveAssetStatusParam)
             } else {
                 if (reason != null) {
-                    val sharedPreference = SharedPreference(requireContext())
-                    val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
+
                     val saveAssetStatusParam = SaveAssetStatusParam(
                         "NOT IN USE",
                         emp_id,
                         assetQRId?.toInt(),
-                        reason
-                    )
+                        reason,
+                        fileName,
+                        fileByte,
+
+                        )
 
                     viewModel.saveAssetStatus(saveAssetStatusParam)
                 } else {
@@ -247,55 +270,6 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
 
 
     }
-
-    private fun clickImage() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_DENIED
-        ) {
-
-            PickImageDialog.build(PickSetup().setPickTypes(EPickType.CAMERA))
-                .setOnPickResult(object : IPickResult {
-                    override fun onPickResult(r: PickResult?) {
-                        photoFile = createImageFile()
-
-                        if (r?.bitmap != null) {
-                            imageBitmap = r?.bitmap
-
-                            try {
-                                FileOutputStream(photoFile?.absolutePath).use { out ->
-                                    r?.bitmap.compress(
-                                        Bitmap.CompressFormat.PNG,
-                                        100,
-                                        out
-                                    ) // bmp is your Bitmap instance
-                                }
-                            } catch (e: IOException) {
-                                e.printStackTrace()
-                            }
-
-                            binding?.imageViewAsset?.setImageBitmap(r?.bitmap)
-                            binding?.cardImage?.visibility = View.VISIBLE
-
-                        }
-                    }
-                })
-                .setOnPickCancel(object : IPickCancel {
-                    override fun onCancelClick() {
-                        //TODO: do what you have to if user clicked cancel
-                    }
-                }).show(this.childFragmentManager)
-        } else {
-            requestPermissions(
-                arrayOf(
-                    Manifest.permission.CAMERA,
-                ),
-                MY_CAMERA_PERMISSION_CODE
-            )
-
-        }
-
-    }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -369,20 +343,55 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
 
     }
 
+    @SuppressLint("NewApi")
     @Throws(IOException::class)
     private fun createImageFile(): File {
         // Create an image file name
 
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val imageFileName =  "asset_" + timeStamp + ""
-        val storageDir = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val image = File.createTempFile(
-            imageFileName, /* prefix */
-            ".jpg", /* suffix */
-            storageDir      /* directory */
+        //  FileName = "Asset-Image-" + assetsQRDtl.QRCode + "-" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".jpg";
+        val timeStamp = SimpleDateFormat("yyyyMMddHHmmss").format(Date())
+        val imageFileName = "Asset-Image-" + qrCode + "-" + timeStamp + ".jpg"
+        /*  val storageDir = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+          val image = File.createTempFile(
+              imageFileName, *//* prefix *//*
+            ".jpg", *//* suffix *//*
+            storageDir      *//* directory *//*
         )
-        Log.e(TAG, "createImageFile: "+image.absolutePath )
-        return image
+        Log.e(TAG, "createImageFile: "+image.absolutePath )*/
+
+        val cw = ContextWrapper(requireActivity()?.getApplicationContext())
+        // path to /data/data/yourapp/app_data/imageDir
+        // path to /data/data/yourapp/app_data/imageDir
+        val directory = cw.getDir("imageDir", Context.MODE_PRIVATE)
+        // Create imageDir
+        // Create imageDir
+        val mypath = File(directory, imageFileName)
+
+        var fos: FileOutputStream? = null
+        try {
+            fos = FileOutputStream(mypath)
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            imageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            try {
+                fos!!.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+
+        Log.e(TAG, "createImageFile:image " + directory.absolutePath)
+
+
+        try {
+            val encoded = Files.readAllBytes(Paths.get(mypath.absolutePath))
+            println(Arrays.toString(encoded))
+        } catch (e: IOException) {
+
+        }
+        return mypath
     }
 
     companion object {
@@ -391,10 +400,11 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
 
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String) =
+        fun newInstance(param1: String, qrCode: String) =
             AssetStatusFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, qrCode)
                     // putString(ARG_PARAM2, param2)
                 }
             }

@@ -125,4 +125,5 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="comments_on_mismatch_data">COMMENTS ON MISMATCH DATA</string>
+    <string name="missmatch">Missmatch</string>
 </resources>

@@ -2,7 +2,6 @@ package com.mahyco.assetsverification.asset_verification.asset_detail
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +24,6 @@ import com.mahyco.assetsverification.asset_verification.asset_detail.viewmodel.H
 import com.mahyco.assetsverification.core.Messageclass
 import com.mahyco.assetsverification.core.SharedPreference
 import com.mahyco.assetsverification.databinding.FragmentAssetDetailsBinding
-import com.mahyco.assetsverification.login.LoginActivity
 import com.mahyco.cmr_app.core.Constant
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -160,7 +158,7 @@ class AssetDetailsFragment() : Fragment() {
         viewModel.SaveAssetStatusData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             var result = it
 
-            if (result.status?.equals("Missmatch") == true) {
+            if (result.status?.equals(getString(R.string.missmatch)) == true) {
 
                 Constant.addFragmentToActivity(
                     ThanksFragment(),
@@ -175,7 +173,7 @@ class AssetDetailsFragment() : Fragment() {
         binding.buttonConfirm.setOnClickListener {
 //activity?.addFragmentToActivity(AssetStatusFragment())
             Constant.addFragmentToActivity(
-                AssetStatusFragment.newInstance(asseData.assetQRId.toString()),
+                AssetStatusFragment.newInstance(asseData.assetQRId.toString(),asseData.qRCode.toString()),
                 R.id.container, this.parentFragmentManager, AssetStatusFragment.TAG
             )
         }
@@ -208,7 +206,7 @@ class AssetDetailsFragment() : Fragment() {
             if (editTextReason.text.isNotEmpty()) {
                 val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
                 val saveAssetStatusParam = SaveAssetStatusParam(
-                    "Missmatch",
+                    getString(R.string.missmatch),
                     emp_id,
                     asseData.assetQRId?.toInt(),
                     editTextReason.text.toString()

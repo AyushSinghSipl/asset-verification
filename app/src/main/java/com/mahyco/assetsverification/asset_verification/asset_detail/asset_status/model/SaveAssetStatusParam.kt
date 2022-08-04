@@ -16,6 +16,12 @@ data class SaveAssetStatusParam(
 	@field:SerializedName("Reason")
 	val reason: String? = null,
 
+	@field:SerializedName("FileName")
+	val FileName: String? = null,
+
+	@field:SerializedName("FileInBite")
+	val FileInBite: String? = null,
+
 	@field:SerializedName("NPAType")
 	val npaType: String? = null
 )
