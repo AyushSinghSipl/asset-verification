@@ -114,7 +114,11 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
 //            startActivity(Intent(this,HomeActivity::class.java))
             if (validateData()) {
-                callLogin()
+                if (Constant.isNetworkConnected(this)) {
+                    callLogin()
+                }else{
+                    msclass?.showMessage("Please check your internet connection")
+                }
             }
         }
     }
