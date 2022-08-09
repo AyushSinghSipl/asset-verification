@@ -353,7 +353,7 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === CAMERA_REQUEST && resultCode === Activity.RESULT_OK) {
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
 
             imageBitmap = data?.getExtras()!!.get("data") as Bitmap?
             if (imageBitmap != null) {

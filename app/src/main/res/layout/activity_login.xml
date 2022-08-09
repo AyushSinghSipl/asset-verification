@@ -42,6 +42,8 @@
                 android:hint="@string/enter_emp_code"
                 android:background="@null"
                 android:textSize="14sp"
+                android:textColor="#292828"
+                android:textColorHint="#8C8B8B"
                 android:padding="14dp" />
         </LinearLayout>
 
@@ -61,6 +63,8 @@
                 android:hint="@string/enter_pass"
                 android:background="@null"
                 android:textSize="14sp"
+                android:textColor="#292828"
+                android:textColorHint="#8C8B8B"
                 android:inputType="textPassword"
                 android:padding="14dp" />
 
