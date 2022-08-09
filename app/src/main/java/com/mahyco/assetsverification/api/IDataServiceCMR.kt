@@ -18,6 +18,9 @@ interface IDataServiceCMR {
     @POST("Assets/getQRCode")
     fun getQrReport(@Body scanQRParam: ScanQRParam): Call<ScanQRResult>
 
+    @POST("appUser/get")
+    fun getAppUser(@Body getAppUserParam: GetAppUserParam): Call< List<GetAppUserResponseItem>>
+
     @POST("Assets/saveAssetStatus")
     fun saveAssetStatus(@Body saveAssetStatusParam: SaveAssetStatusParam): Call<SaveStatusResponse>
 

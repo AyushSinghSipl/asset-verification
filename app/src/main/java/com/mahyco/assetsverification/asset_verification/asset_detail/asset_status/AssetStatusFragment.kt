@@ -17,8 +17,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,18 +28,16 @@ import com.google.gson.Gson
 import com.mahyco.assetsverification.HomeActivity
 import com.mahyco.assetsverification.R
 import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.adapter.*
+import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.GetAppUserParam
+import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.GetAppUserResponseItem
 import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.SaveAssetStatusParam
 import com.mahyco.assetsverification.asset_verification.asset_detail.asset_verified.AssetVerifiedFragment
 import com.mahyco.assetsverification.asset_verification.asset_detail.viewmodel.HomeViewModel
+import com.mahyco.assetsverification.core.Messageclass
 import com.mahyco.assetsverification.core.SharedPreference
 import com.mahyco.assetsverification.databinding.FragmentAssetStatusBinding
 import com.mahyco.cmr_app.core.Constant
-import com.vansuita.pickimage.bean.PickResult
-import com.vansuita.pickimage.bundle.PickSetup
-import com.vansuita.pickimage.dialog.PickImageDialog
-import com.vansuita.pickimage.enums.EPickType
-import com.vansuita.pickimage.listeners.IPickCancel
-import com.vansuita.pickimage.listeners.IPickResult
+import okhttp3.internal.notify
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -59,16 +58,19 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
     var activity = getActivity() as HomeActivity?
     var menuList = ArrayList<NotInUseReasonModel>()
     var npaList = ArrayList<NotInUseReasonModel>()
+    var getTechnicalAssistanceList = ArrayList<GetAppUserResponseItem>()
     lateinit var notInUseReasonAdapter: NotInUseReasonAdapter
     lateinit var npaAdapter: NpaAdapter
     private val viewModel: HomeViewModel by viewModels()
     lateinit var status: String
     lateinit var reason: String
     var npa: String = ""
+    var msclass: Messageclass? = null
     var alert: AlertDialog? = null
     var imageBitmap: Bitmap? = null
     private val MY_CAMERA_PERMISSION_CODE = 100
     private val CAMERA_REQUEST = 200
+   lateinit var adapter: ArrayAdapter<GetAppUserResponseItem>
     var photoFile: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,6 +94,8 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
     }
 
     private fun registerObserver() {
+
+
         viewModel!!.loadingLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             if (it) {
                 binding.llProgressBar.loader.visibility = View.VISIBLE
@@ -135,13 +139,54 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
             }
 
         })
+        viewModel.getTechnicalAssistanceList.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer {
+                var result = it
+                if (result != null) {
+                    getTechnicalAssistanceList = (result as ArrayList<GetAppUserResponseItem>?)!!
+//                    adapter.notifyDataSetChanged()
+                    getTechnicalAssistanceList.add(0, GetAppUserResponseItem("", "", "", "","Select technical assistance",""))
 
+                    adapter =
+                        ArrayAdapter<GetAppUserResponseItem>(
+                            this.requireContext(), android.R.layout.simple_spinner_dropdown_item,
+                            getTechnicalAssistanceList as ArrayList<GetAppUserResponseItem>
+                        )
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.techAssistnceSelection.setAdapter(adapter)
+                }
+
+
+            })
+    }
+
+    private fun validate(): Boolean {
+
+        if (binding.techAssistnceSelection.selectedItemPosition == 0) {
+            msclass?.showMessage("Please select Technical Assistance")
+
+            return false
+        }
+
+
+
+
+        return true
 
     }
 
     @SuppressLint("SimpleDateFormat", "SetTextI18n", "NewApi")
     private fun setUi() {
+        val getAppUserParam = GetAppUserParam("3", "TechAssistant")
 
+        if (Constant.isNetworkConnected(requireActivity())) {
+            viewModel.getTechnicalAssistance(getAppUserParam)
+        } else {
+            msclass?.showMessage("Please check your internet connection")
+        }
+
+        msclass = Messageclass(requireContext())
         val sd = SimpleDateFormat(
             "hh:mm aa" +
                     " - EEE,dd MMM"
@@ -163,60 +208,95 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
         }
 
         binding.buttonPhotoUpload.setOnClickListener {
-            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(cameraIntent, CAMERA_REQUEST)
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    android.Manifest.permission.CAMERA
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissions(
+                    arrayOf(
+                        Manifest.permission.CAMERA,
+                    ),
+                    MY_CAMERA_PERMISSION_CODE
+                )
+            } else {
+                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(cameraIntent, CAMERA_REQUEST)
+            }
+        }
+        binding.chooseTechAssistance.setOnClickListener {
+
+
+
         }
 
         binding.buttonVerify.setOnClickListener {
-            var fileName = ""
-            var fileByte = ""
-            if (photoFile != null) {
-                try {
-                    //   val encoded = Files.readAllBytes(Paths.get(photoFile?.absolutePath))
-                    val fileContent = Files.readAllBytes(photoFile!!.toPath())
+            if (validate()) {
+
+                val techAssistantCode = getTechnicalAssistanceList?.get(binding.techAssistnceSelection.selectedItemPosition)?.techAssistantCode
+                val techAssistantName =
+                    getTechnicalAssistanceList?.get(binding.techAssistnceSelection.selectedItemPosition)?.techAssistantName
+                var fileName = ""
+                var fileByte = ""
+                if (photoFile != null) {
+                    try {
+                        //   val encoded = Files.readAllBytes(Paths.get(photoFile?.absolutePath))
+                        val fileContent = Files.readAllBytes(photoFile!!.toPath())
 
 
-                    fileByte = Base64.getEncoder().encodeToString(fileContent)
-                    fileName = photoFile?.name.toString()
-                } catch (e: IOException) {
-                    Log.e(TAG, "setUi: " + e.message)
+                        fileByte = Base64.getEncoder().encodeToString(fileContent)
+                        fileName = photoFile?.name.toString()
+                    } catch (e: IOException) {
+                        Log.e(TAG, "setUi: " + e.message)
+                    }
                 }
-            }
-            val sharedPreference = SharedPreference(requireContext())
-            val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
-            if (status.equals("IN USE")) {
-
-                val saveAssetStatusParam = SaveAssetStatusParam(
-                    "IN USE",
-                    emp_id,
-                    assetQRId?.toInt(),
-                    "",
-                    fileName,
-                    fileByte,
-                    npa
-                )
-
-                viewModel.saveAssetStatus(saveAssetStatusParam)
-            } else {
-                if (reason != null) {
+                val sharedPreference = SharedPreference(requireContext())
+                val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
+                if (status.equals("IN USE")) {
 
                     val saveAssetStatusParam = SaveAssetStatusParam(
-                        "NOT IN USE",
+                        "IN USE",
                         emp_id,
+                        techAssistantCode,
+                        techAssistantName,
                         assetQRId?.toInt(),
-                        reason,
+                        "",
                         fileName,
                         fileByte,
-
-                        )
-
-                    viewModel.saveAssetStatus(saveAssetStatusParam)
+                        npa
+                    )
+                    if (Constant.isNetworkConnected(requireActivity())) {
+                        viewModel.saveAssetStatus(saveAssetStatusParam)
+                    } else {
+                        msclass?.showMessage("Please check your internet connection")
+                    }
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Please select a valid reason",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (reason != null) {
+
+                        val saveAssetStatusParam = SaveAssetStatusParam(
+                            "NOT IN USE",
+                            emp_id,
+                            techAssistantCode,
+                            techAssistantName,
+                            assetQRId?.toInt(),
+                            reason,
+                            fileName,
+                            fileByte,
+
+                            )
+
+                        if (Constant.isNetworkConnected(requireActivity())) {
+                            viewModel.saveAssetStatus(saveAssetStatusParam)
+                        } else {
+                            msclass?.showMessage("Please check your internet connection")
+                        }
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Please select a valid reason",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
 

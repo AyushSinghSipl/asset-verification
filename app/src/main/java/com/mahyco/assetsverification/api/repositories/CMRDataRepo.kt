@@ -17,6 +17,8 @@ interface CMRDataRepo {
 
     fun callLoginAPi(loginParam: LoginParam): Observable<LoginResponseModel>
     fun getAssetDetail(scanQRParam: ScanQRParam): Observable<ScanQRResult>
+
+    fun getAppUser(getAppUserParam: GetAppUserParam): Observable< List<GetAppUserResponseItem>>
     fun SaveAssetStatus(saveAssetStatusParam: SaveAssetStatusParam): Observable<SaveStatusResponse>
     fun checkUserValid(checkUserValidParam: CheckUserValidParam): Observable<CheckUserValidResponse>
 

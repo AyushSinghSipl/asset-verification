@@ -259,6 +259,48 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/layoutTechnicalAssistance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="center_horizontal"
+                android:text="@string/technical_assistance"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/choose_tech_assistance"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/edit_text_selector"
+                android:paddingHorizontal="@dimen/dp_10">
+
+                <com.mahyco.assetsverification.utils.searchspinner.SearchableSpinner
+                    android:id="@+id/techAssistnceSelection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SELECT ASSISTANCE"
+                    android:textStyle="bold" />
+
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
 
 
         <androidx.cardview.widget.CardView
@@ -350,5 +392,10 @@
         android:id="@+id/llProgressBar"
         layout="@layout/layout_progressbar_with_text"
         android:visibility="gone" />
+
+
+
+
+
 
 </RelativeLayout>

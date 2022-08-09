@@ -29,6 +29,7 @@ class HomeViewModel @Inject constructor(application: Application) : BaseViewMode
     var QRdata = MutableLiveData<ScanQRResult>()
     var SaveAssetStatusData = MutableLiveData<SaveStatusResponse>()
     var checkUserValidData = MutableLiveData<CheckUserValidResponse>()
+    var getTechnicalAssistanceList = MutableLiveData< List<GetAppUserResponseItem>>()
 
     fun getAssetDetailsApi(
         scanQRParam: ScanQRParam
@@ -54,6 +55,32 @@ class HomeViewModel @Inject constructor(application: Application) : BaseViewMode
 
         disposable.add(dispose)
     }
+
+     fun getTechnicalAssistance(
+        getAppUserParam: GetAppUserParam
+    ) {
+        val sharedPreference: SharedPreference = SharedPreference(mContext)
+        loadingLiveData.value = true
+        val disposable = CompositeDisposable()
+        val observable = ImplCMRDataRepo(iServiceISP).getAppUser(
+            getAppUserParam
+        )
+        val dispose = observable
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { response ->
+                loadingLiveData.value = false
+
+                if (response != null /*&& response.message!=null*/) {
+                    getTechnicalAssistanceList.value = response
+                } else {
+                    errorLiveData.value = mContext.resources.getString(R.string.server_error)
+                }
+            }
+
+        disposable.add(dispose)
+    }
+
 
     fun saveAssetStatus(
         saveAssetStatusParam: SaveAssetStatusParam

@@ -10,6 +10,12 @@ data class SaveAssetStatusParam(
 	@field:SerializedName("CreatedBy")
 	val createdBy: String? = null,
 
+	@field:SerializedName("TechAssistantCode")
+	val TechAssistantCode: String? = null,
+
+	@field:SerializedName("TechAssistantName")
+	val TechAssistantName: String? = null,
+
 	@field:SerializedName("AssetQRId")
 	val assetQRId: Int? = null,
 

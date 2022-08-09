@@ -1,8 +1,5 @@
 package com.mahyco.cmr_app.repositories
 
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import com.google.gson.reflect.TypeToken
 import com.mahyco.assetsverification.api.IDataServiceCMR
 import com.mahyco.assetsverification.asset_verification.asset_detail.asset_status.model.*
 import com.mahyco.assetsverification.login.model.LoginParam
@@ -84,6 +81,41 @@ class ImplCMRDataRepo(private val iDataServiceCMR: IDataServiceCMR) :
                             val response = ScanQRResult()
                             // response.success = false
                             it.onNext(response)
+                            it.onComplete()
+                        }
+                    }
+                }
+            })
+        }
+    }
+
+    override fun getAppUser(getAppUserParam: GetAppUserParam): Observable< List<GetAppUserResponseItem>> {
+        return Observable.create {
+            val apiCall = iDataServiceCMR.getAppUser(getAppUserParam)
+
+            apiCall.enqueue(object : Callback< List<GetAppUserResponseItem>> {
+                override fun onFailure(call: Call< List<GetAppUserResponseItem>>, t: Throwable) {
+                   /* val response = List<GetAppUserResponseItem>()
+                    it.onNext(response)*/
+                    it.onComplete()
+                }
+
+                override fun onResponse(
+                    call: Call< List<GetAppUserResponseItem>>,
+                    response: Response< List<GetAppUserResponseItem>>
+                ) {
+                    when {
+                        response.isSuccessful -> {
+                            val responseData = response.body()
+                            if (responseData != null) {
+                                it.onNext(responseData)
+                                it.onComplete()
+                            }
+                        }
+                        else -> {
+                           /* val response =  List<GetAppUserResponseItem>()
+                            // response.success = false
+                            it.onNext(response)*/
                             it.onComplete()
                         }
                     }

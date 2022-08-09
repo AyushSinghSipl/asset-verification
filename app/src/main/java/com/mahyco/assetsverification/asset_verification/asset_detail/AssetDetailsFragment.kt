@@ -172,14 +172,25 @@ class AssetDetailsFragment() : Fragment() {
     private fun setUI() {
         binding.buttonConfirm.setOnClickListener {
 //activity?.addFragmentToActivity(AssetStatusFragment())
-            Constant.addFragmentToActivity(
-                AssetStatusFragment.newInstance(asseData.assetQRId.toString(),asseData.qRCode.toString()),
-                R.id.container, this.parentFragmentManager, AssetStatusFragment.TAG
-            )
+            if (Constant.isNetworkConnected(requireContext())) {
+                Constant.addFragmentToActivity(
+                    AssetStatusFragment.newInstance(
+                        asseData.assetQRId.toString(),
+                        asseData.qRCode.toString()
+                    ),
+                    R.id.container, this.parentFragmentManager, AssetStatusFragment.TAG
+                )
+            }else{
+                msclass?.showMessage("Please check internet connection")
+            }
         }
 
         binding.buttonMismatchDetails.setOnClickListener {
+            if (Constant.isNetworkConnected(requireContext())) {
             missMatchAlert()
+            }else{
+                msclass?.showMessage("Please check internet connection")
+            }
         }
 
 
@@ -207,7 +218,10 @@ class AssetDetailsFragment() : Fragment() {
                 val emp_id = sharedPreference.getValueString(Constant.EMP_ID)
                 val saveAssetStatusParam = SaveAssetStatusParam(
                     getString(R.string.missmatch),
+
                     emp_id,
+                    "",
+                    "",
                     asseData.assetQRId?.toInt(),
                     editTextReason.text.toString()
                 )
