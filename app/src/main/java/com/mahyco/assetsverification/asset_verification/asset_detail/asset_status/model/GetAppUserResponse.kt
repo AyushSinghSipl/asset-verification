@@ -32,7 +32,7 @@ data class GetAppUserResponseItem(
 		if (techAssistantCode.isNullOrEmpty()){
 			return techAssistantName.toString()
 		}else{
-			return techAssistantName.toString()+" -"+techAssistantCode
+			return techAssistantName.toString()+" - "+techAssistantCode.toString()
 		}
 
 	}
