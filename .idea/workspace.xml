@@ -18,24 +18,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b0f27e4-cc12-49d0-8a56-d6855576649a" name="Default Changelist" comment="new modification (assign technical assistance)">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/workspace-id.txt.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/workspace-id.txt.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/model/GetAppUserResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/model/GetAppUserResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[adb-RZ8M50RB21W-Ttmfgm._adb-tls-connect._tcp]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[192.168.29.142:5555]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -112,6 +105,7 @@
     <property name="android-custom-viewC:/Users/r/.gradle/caches/modules-2/files-2.1/androidx.drawerlayout/drawerlayout/1.1.1/d95f7d9cd7d95cc0c038bbcf9c65f521b56fee55/drawerlayout-1.1.1-sources.jar!/androidx/drawerlayout/widget/DrawerLayout.java_DrawerLayout_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewC:/Users/r/.gradle/caches/modules-2/files-2.1/androidx.drawerlayout/drawerlayout/1.1.1/d95f7d9cd7d95cc0c038bbcf9c65f521b56fee55/drawerlayout-1.1.1-sources.jar!/androidx/drawerlayout/widget/DrawerLayout.java_SELECTED" value="DrawerLayout" />
     <property name="android-custom-viewC:/Users/r/Desktop/android_projects/AssetsVerification/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java_SELECTED" value="SearchableSpinner" />
+    <property name="android-custom-viewC:/Users/r/Desktop/android_projects/AssetsVerification/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java_SearchableSpinner_DIMENSIONS" value="1080&#10;1920" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification" />
@@ -329,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660031506916</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="new modification (assign technical assistance)">
+      <created>1660045879950</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1660045879950</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -806,27 +807,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>435</line>
-          <option name="timeStamp" value="158" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>431</line>
+          <line>430</line>
           <option name="timeStamp" value="162" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>432</line>
+          <line>431</line>
           <option name="timeStamp" value="163" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>433</line>
-          <option name="timeStamp" value="164" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>473</line>
+          <line>461</line>
           <option name="timeStamp" value="165" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -836,67 +827,62 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>439</line>
-          <option name="timeStamp" value="167" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>469</line>
+          <line>457</line>
           <option name="timeStamp" value="175" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>468</line>
+          <line>456</line>
           <option name="timeStamp" value="176" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>447</line>
+          <line>435</line>
           <option name="timeStamp" value="177" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>444</line>
+          <line>434</line>
           <option name="timeStamp" value="178" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>453</line>
+          <line>441</line>
           <option name="timeStamp" value="179" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>451</line>
+          <line>439</line>
           <option name="timeStamp" value="180" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>450</line>
+          <line>438</line>
           <option name="timeStamp" value="181" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>441</line>
+          <line>433</line>
           <option name="timeStamp" value="182" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>455</line>
+          <line>443</line>
           <option name="timeStamp" value="183" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>458</line>
+          <line>446</line>
           <option name="timeStamp" value="184" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>459</line>
+          <line>447</line>
           <option name="timeStamp" value="185" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>460</line>
+          <line>448</line>
           <option name="timeStamp" value="186" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -930,49 +916,168 @@
           <option name="timeStamp" value="193" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>146</line>
-          <option name="timeStamp" value="200" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>160</line>
-          <option name="timeStamp" value="201" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/AssetDetailsFragment.kt</url>
           <line>127</line>
           <option name="timeStamp" value="202" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>144</line>
-          <option name="timeStamp" value="203" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
           <line>143</line>
           <option name="timeStamp" value="204" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>145</line>
-          <option name="timeStamp" value="205" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-field">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>34</line>
+          <properties field="_strHintText" class="com.mahyco.assetsverification.utils.searchspinner.SearchableSpinner" />
+          <option name="timeStamp" value="217" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="220" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="225" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>110</line>
+          <option name="timeStamp" value="226" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="227" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>161</line>
+          <option name="timeStamp" value="228" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>165</line>
+          <option name="timeStamp" value="229" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>162</line>
+          <option name="timeStamp" value="230" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>130</line>
+          <option name="timeStamp" value="231" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>128</line>
+          <option name="timeStamp" value="232" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>125</line>
+          <option name="timeStamp" value="233" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="234" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="235" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="236" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>127</line>
+          <option name="timeStamp" value="237" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>105</line>
+          <option name="timeStamp" value="238" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="239" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="240" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="241" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableListDialog.java</url>
+          <line>193</line>
+          <option name="timeStamp" value="242" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableListDialog.java</url>
           <line>195</line>
-          <option name="timeStamp" value="213" />
+          <option name="timeStamp" value="243" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>150</line>
-          <option name="timeStamp" value="215" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableListDialog.java</url>
+          <line>198</line>
+          <option name="timeStamp" value="244" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/asset_verification/asset_detail/asset_status/AssetStatusFragment.kt</url>
-          <line>155</line>
-          <option name="timeStamp" value="216" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="245" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableSpinner.java</url>
+          <line>132</line>
+          <option name="timeStamp" value="246" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableListDialog.java</url>
+          <line>139</line>
+          <option name="timeStamp" value="247" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mahyco/assetsverification/utils/searchspinner/SearchableListDialog.java</url>
+          <line>208</line>
+          <properties class="com.mahyco.assetsverification.utils.searchspinner.SearchableListDialog.OnSearchTextChanged" method="onSearchTextChanged">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="248" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>

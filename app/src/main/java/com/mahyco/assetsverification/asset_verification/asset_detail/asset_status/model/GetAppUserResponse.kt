@@ -29,6 +29,11 @@ data class GetAppUserResponseItem(
 	val roleId: String? = null
 ){
 	override fun toString(): String {
-		return techAssistantName.toString()
+		if (techAssistantCode.isNullOrEmpty()){
+			return techAssistantName.toString()
+		}else{
+			return techAssistantName.toString()+" -"+techAssistantCode
+		}
+
 	}
 }

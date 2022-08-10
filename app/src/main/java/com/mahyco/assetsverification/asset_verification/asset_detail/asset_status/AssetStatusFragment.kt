@@ -428,23 +428,11 @@ class AssetStatusFragment : Fragment(), onCLick, onNpaCLick {
     private fun createImageFile(): File {
         // Create an image file name
 
-        //  FileName = "Asset-Image-" + assetsQRDtl.QRCode + "-" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".jpg";
         val timeStamp = SimpleDateFormat("yyyyMMddHHmmss").format(Date())
         val imageFileName = "Asset-Image-" + qrCode + "-" + timeStamp + ".jpg"
-        /*  val storageDir = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-          val image = File.createTempFile(
-              imageFileName, *//* prefix *//*
-            ".jpg", *//* suffix *//*
-            storageDir      *//* directory *//*
-        )
-        Log.e(TAG, "createImageFile: "+image.absolutePath )*/
 
         val cw = ContextWrapper(requireActivity()?.getApplicationContext())
-        // path to /data/data/yourapp/app_data/imageDir
-        // path to /data/data/yourapp/app_data/imageDir
         val directory = cw.getDir("imageDir", Context.MODE_PRIVATE)
-        // Create imageDir
-        // Create imageDir
         val mypath = File(directory, imageFileName)
 
         var fos: FileOutputStream? = null
